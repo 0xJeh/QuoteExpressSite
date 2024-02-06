@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuoteSite</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WXGZEG9J57"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-WXGZEG9J57');
+        var cssStyles = `
+        @import 'https://fonts.googleapis.com/css?family=Inconsolata|Merriweather';
+  body {
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #07999e;
+  }
+  
+  .console {
+    font-family: Inconsolata;
+    width: 700px;
+    height: 450px;
+    box-sizing: border-box;
+    margin: auto;
+  }
+  
+  .console header {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #2e2d2dd3;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    color: #ffffff;
+  }
+  
+  .console .consolebody {
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+    box-sizing: border-box;
+    padding: 5px;
+    height: calc(100% - 40px);
+    overflow: scroll;
+    background-color: #000;
+    color: #63de00;
+  }
+  
+  .console .consolebody p .text1 {
+    line-height: 1rem;
+    color: azure;
+  }`
+
+    var styleElement = document.createElement('style');
+    styleElement.innerHTML = cssStyles;
+    document.head.appendChild(styleElement);
+  </script>
+  </script>
+</head>
+<body>
+  <div class="console">
+    <header>
+      <p>0xJeh - Node.js Express</p>
+    </header>
+    <div class="consolebody">
+      <p>Microsoft Windows [version 10.0.10586]</p>
+      <p>(c) 2015 Microsoft Corporation. All rights reserved.</p>
+      <p>-</p>
+      <p>
+        guest@author>
+        <span class="text1" id="author"></span>
+      </p>
+      <p>
+        guest@quote>
+        <span class="text1" id="quote"></span>
+      </p>
+    </div>
+    <p>notwithstanding.co</p>
+  </div>
+
+  <script>
+    // Fetch the quote from the Quotable API
+    fetch('https://api.quotable.io/random')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('author').innerText = data.author;
+        document.getElementById('quote').innerText = data.content;
+      })
+      .catch(error => console.error('Error fetching quote:', error));
+  </script>
+</body>
+</html>
